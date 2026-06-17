@@ -8,6 +8,7 @@ const PROPERTIES = [
   { name: "url", kind: 'InlineScalar', use: "URL", cardinality: "one", required: true },
   { name: "inLanguage", kind: 'Embed', use: "Language", cardinality: "one", required: false },
   { name: "image", kind: 'Ref', targets: ["ImageObject"], cardinality: "one", required: false },
+  { name: "publisher", kind: 'Ref', targets: ["Organization"], cardinality: "one", required: false },
 ];
 
 async function loadRefOptions(api) {

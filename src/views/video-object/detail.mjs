@@ -1,21 +1,21 @@
 import { layout, escapeHtml, displayName, formatValue, errorPage } from '../layout.mjs';
 
-const ENTITY = "WebPage";
-const BASE = "/web-pages";
+const ENTITY = "VideoObject";
+const BASE = "/video-objects";
 const PROPERTIES = [
-  { name: "headline", kind: 'InlineScalar', use: "Text", cardinality: "one", required: true },
+  { name: "name", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
   { name: "description", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
-  { name: "text", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
-  { name: "author", kind: 'Ref', targets: ["Person"], cardinality: "one", required: false },
-  { name: "publisher", kind: 'Ref', targets: ["Organization"], cardinality: "one", required: false },
-  { name: "primaryImageOfPage", kind: 'Ref', targets: ["ImageObject"], cardinality: "one", required: false },
-  { name: "isPartOf", kind: 'Ref', targets: ["WebSite"], cardinality: "one", required: false },
-  { name: "datePublished", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
-  { name: "dateModified", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
-  { name: "dateCreated", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
-  { name: "url", kind: 'InlineScalar', use: "URL", cardinality: "one", required: false },
-  { name: "inLanguage", kind: 'Embed', use: "Language", cardinality: "one", required: false },
-  { name: "creativeWorkStatus", kind: 'Enum', values: ["Draft","Pending","Published","Archived"], cardinality: "one", required: false },
+  { name: "contentUrl", kind: 'InlineScalar', use: "URL", cardinality: "one", required: true },
+  { name: "embedUrl", kind: 'InlineScalar', use: "URL", cardinality: "one", required: false },
+  { name: "encodingFormat", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "duration", kind: 'InlineScalar', use: "Duration", cardinality: "one", required: false },
+  { name: "videoQuality", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "transcript", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "caption", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "uploadDate", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
+  { name: "creator", kind: 'Ref', targets: ["Person"], cardinality: "one", required: false },
+  { name: "thumbnail", kind: 'Ref', targets: ["ImageObject"], cardinality: "one", required: false },
+  { name: "productionCompany", kind: 'Ref', targets: ["Organization"], cardinality: "one", required: false },
 ];
 
 export async function render({ id, api, user, csrf }) {

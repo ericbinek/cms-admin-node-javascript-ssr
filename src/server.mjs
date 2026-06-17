@@ -25,6 +25,11 @@ import * as PersonDetail from './views/person/detail.mjs';
 import * as PersonCreate from './views/person/create.mjs';
 import * as PersonEdit from './views/person/edit.mjs';
 import * as PersonDelete from './views/person/delete.mjs';
+import * as OrganizationList from './views/organization/list.mjs';
+import * as OrganizationDetail from './views/organization/detail.mjs';
+import * as OrganizationCreate from './views/organization/create.mjs';
+import * as OrganizationEdit from './views/organization/edit.mjs';
+import * as OrganizationDelete from './views/organization/delete.mjs';
 import * as WebPageList from './views/web-page/list.mjs';
 import * as WebPageDetail from './views/web-page/detail.mjs';
 import * as WebPageCreate from './views/web-page/create.mjs';
@@ -35,6 +40,16 @@ import * as ImageObjectDetail from './views/image-object/detail.mjs';
 import * as ImageObjectCreate from './views/image-object/create.mjs';
 import * as ImageObjectEdit from './views/image-object/edit.mjs';
 import * as ImageObjectDelete from './views/image-object/delete.mjs';
+import * as VideoObjectList from './views/video-object/list.mjs';
+import * as VideoObjectDetail from './views/video-object/detail.mjs';
+import * as VideoObjectCreate from './views/video-object/create.mjs';
+import * as VideoObjectEdit from './views/video-object/edit.mjs';
+import * as VideoObjectDelete from './views/video-object/delete.mjs';
+import * as AudioObjectList from './views/audio-object/list.mjs';
+import * as AudioObjectDetail from './views/audio-object/detail.mjs';
+import * as AudioObjectCreate from './views/audio-object/create.mjs';
+import * as AudioObjectEdit from './views/audio-object/edit.mjs';
+import * as AudioObjectDelete from './views/audio-object/delete.mjs';
 import * as CategoryCodeList from './views/category-code/list.mjs';
 import * as CategoryCodeDetail from './views/category-code/detail.mjs';
 import * as CategoryCodeCreate from './views/category-code/create.mjs';
@@ -65,6 +80,11 @@ import * as WebSiteDetail from './views/web-site/detail.mjs';
 import * as WebSiteCreate from './views/web-site/create.mjs';
 import * as WebSiteEdit from './views/web-site/edit.mjs';
 import * as WebSiteDelete from './views/web-site/delete.mjs';
+import * as SiteNavigationElementList from './views/site-navigation-element/list.mjs';
+import * as SiteNavigationElementDetail from './views/site-navigation-element/detail.mjs';
+import * as SiteNavigationElementCreate from './views/site-navigation-element/create.mjs';
+import * as SiteNavigationElementEdit from './views/site-navigation-element/edit.mjs';
+import * as SiteNavigationElementDelete from './views/site-navigation-element/delete.mjs';
 
 const PORT = parseInt(process.env.PORT || '5000', 10);
 const HOST = process.env.HOST || '0.0.0.0';
@@ -77,10 +97,16 @@ const ENTITY_ROUTES = [
     views: { list: BlogPostingList, detail: BlogPostingDetail, create: BlogPostingCreate, edit: BlogPostingEdit, del: BlogPostingDelete } },
   { entity: "Person", plural: "persons",
     views: { list: PersonList, detail: PersonDetail, create: PersonCreate, edit: PersonEdit, del: PersonDelete } },
+  { entity: "Organization", plural: "organizations",
+    views: { list: OrganizationList, detail: OrganizationDetail, create: OrganizationCreate, edit: OrganizationEdit, del: OrganizationDelete } },
   { entity: "WebPage", plural: "web-pages",
     views: { list: WebPageList, detail: WebPageDetail, create: WebPageCreate, edit: WebPageEdit, del: WebPageDelete } },
   { entity: "ImageObject", plural: "image-objects",
     views: { list: ImageObjectList, detail: ImageObjectDetail, create: ImageObjectCreate, edit: ImageObjectEdit, del: ImageObjectDelete } },
+  { entity: "VideoObject", plural: "video-objects",
+    views: { list: VideoObjectList, detail: VideoObjectDetail, create: VideoObjectCreate, edit: VideoObjectEdit, del: VideoObjectDelete } },
+  { entity: "AudioObject", plural: "audio-objects",
+    views: { list: AudioObjectList, detail: AudioObjectDetail, create: AudioObjectCreate, edit: AudioObjectEdit, del: AudioObjectDelete } },
   { entity: "CategoryCode", plural: "category-codes",
     views: { list: CategoryCodeList, detail: CategoryCodeDetail, create: CategoryCodeCreate, edit: CategoryCodeEdit, del: CategoryCodeDelete } },
   { entity: "CategoryCodeSet", plural: "category-code-sets",
@@ -93,6 +119,8 @@ const ENTITY_ROUTES = [
     views: { list: CommentList, detail: CommentDetail, create: CommentCreate, edit: CommentEdit, del: CommentDelete } },
   { entity: "WebSite", plural: "web-sites",
     views: { list: WebSiteList, detail: WebSiteDetail, create: WebSiteCreate, edit: WebSiteEdit, del: WebSiteDelete } },
+  { entity: "SiteNavigationElement", plural: "site-navigation-elements",
+    views: { list: SiteNavigationElementList, detail: SiteNavigationElementDetail, create: SiteNavigationElementCreate, edit: SiteNavigationElementEdit, del: SiteNavigationElementDelete } },
 ];
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

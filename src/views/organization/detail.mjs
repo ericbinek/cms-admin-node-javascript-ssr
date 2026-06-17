@@ -1,21 +1,18 @@
 import { layout, escapeHtml, displayName, formatValue, errorPage } from '../layout.mjs';
 
-const ENTITY = "WebPage";
-const BASE = "/web-pages";
+const ENTITY = "Organization";
+const BASE = "/organizations";
 const PROPERTIES = [
-  { name: "headline", kind: 'InlineScalar', use: "Text", cardinality: "one", required: true },
+  { name: "name", kind: 'InlineScalar', use: "Text", cardinality: "one", required: true },
+  { name: "legalName", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
   { name: "description", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
-  { name: "text", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
-  { name: "author", kind: 'Ref', targets: ["Person"], cardinality: "one", required: false },
-  { name: "publisher", kind: 'Ref', targets: ["Organization"], cardinality: "one", required: false },
-  { name: "primaryImageOfPage", kind: 'Ref', targets: ["ImageObject"], cardinality: "one", required: false },
-  { name: "isPartOf", kind: 'Ref', targets: ["WebSite"], cardinality: "one", required: false },
-  { name: "datePublished", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
-  { name: "dateModified", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
-  { name: "dateCreated", kind: 'InlineScalar', use: "DateTime", cardinality: "one", required: false },
   { name: "url", kind: 'InlineScalar', use: "URL", cardinality: "one", required: false },
-  { name: "inLanguage", kind: 'Embed', use: "Language", cardinality: "one", required: false },
-  { name: "creativeWorkStatus", kind: 'Enum', values: ["Draft","Pending","Published","Archived"], cardinality: "one", required: false },
+  { name: "email", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "telephone", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
+  { name: "logo", kind: 'Ref', targets: ["ImageObject"], cardinality: "one", required: false },
+  { name: "foundingDate", kind: 'InlineScalar', use: "Date", cardinality: "one", required: false },
+  { name: "sameAs", kind: 'InlineScalar', use: "URL", cardinality: "many", required: false },
+  { name: "parentOrganization", kind: 'Ref', targets: ["Organization"], cardinality: "one", required: false },
 ];
 
 export async function render({ id, api, user, csrf }) {

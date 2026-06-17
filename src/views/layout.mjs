@@ -2,30 +2,38 @@
 // Imported by every view module. Has no runtime dependencies on the API
 // — the views call the api-client themselves and pass values in.
 
-const ENTITIES = ["BlogPosting","Person","WebPage","ImageObject","CategoryCode","CategoryCodeSet","DefinedTerm","DefinedTermSet","Comment","WebSite"];
+const ENTITIES = ["BlogPosting","Person","Organization","WebPage","ImageObject","VideoObject","AudioObject","CategoryCode","CategoryCodeSet","DefinedTerm","DefinedTermSet","Comment","WebSite","SiteNavigationElement"];
 const PLURALS = {
   "BlogPosting": "blog-postings",
   "Person": "persons",
+  "Organization": "organizations",
   "WebPage": "web-pages",
   "ImageObject": "image-objects",
+  "VideoObject": "video-objects",
+  "AudioObject": "audio-objects",
   "CategoryCode": "category-codes",
   "CategoryCodeSet": "category-code-sets",
   "DefinedTerm": "defined-terms",
   "DefinedTermSet": "defined-term-sets",
   "Comment": "comments",
   "WebSite": "web-sites",
+  "SiteNavigationElement": "site-navigation-elements",
 };
 const DISPLAY_KEYS = {
   "BlogPosting": ["headline","alternativeHeadline"],
   "Person": ["name","givenName","familyName"],
+  "Organization": ["name","legalName"],
   "WebPage": ["headline"],
   "ImageObject": ["name","caption","contentUrl"],
+  "VideoObject": ["name","caption","contentUrl"],
+  "AudioObject": ["name","contentUrl"],
   "CategoryCode": ["name","codeValue"],
   "CategoryCodeSet": ["name"],
   "DefinedTerm": ["name","termCode"],
   "DefinedTermSet": ["name"],
   "Comment": ["text"],
   "WebSite": ["name"],
+  "SiteNavigationElement": ["name"],
 };
 
 export function pluralOf(entity) {
