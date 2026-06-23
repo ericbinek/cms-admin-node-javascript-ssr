@@ -3,9 +3,9 @@ import { layout, escapeHtml, displayName, formatValue } from '../layout.mjs';
 const ENTITY = "DefinedTermSet";
 const BASE = "/defined-term-sets";
 const PROPERTIES = [
-  { name: "name", kind: 'InlineScalar', use: "Text", cardinality: "one", required: true },
-  { name: "description", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false },
-  { name: "url", kind: 'InlineScalar', use: "URL", cardinality: "one", required: false },
+  { name: "name", kind: 'InlineScalar', use: "Text", cardinality: "one", required: true, maxLength: 256 },
+  { name: "description", kind: 'InlineScalar', use: "Text", cardinality: "one", required: false, maxLength: 5000, multiline: true },
+  { name: "url", kind: 'InlineScalar', use: "URL", cardinality: "one", required: false, maxLength: 2048 },
 ];
 const EXTRA_COLS = ["url"];
 

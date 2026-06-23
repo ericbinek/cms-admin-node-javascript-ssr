@@ -152,8 +152,6 @@ export function formatValue(value, prop) {
   return formatScalar(value, prop.use);
 }
 
-const LONG_TEXT_HINT = new Set(['articleBody', 'description', 'text']);
-
 export function renderField({ prop, value, refOptions = {}, errors = [] }) {
   const id = `field-${prop.name}`;
   const req = prop.required;
@@ -173,6 +171,7 @@ ${help}
 }
 
 function renderInput({ prop, value, id, requiredAttr, ariaInvalid, refOptions }) {
+  const maxLengthAttr = prop.maxLength ? ` maxlength="${prop.maxLength}"` : '';
   if (prop.kind === 'Enum') {
     const opts = prop.values.map((v) =>
       `<option value="${escapeHtml(v)}"${v === value ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
@@ -201,11 +200,11 @@ function renderInput({ prop, value, id, requiredAttr, ariaInvalid, refOptions })
     const v = Array.isArray(value) ? value.join('\n') : (value || '');
     return `<textarea id="${id}" name="${escapeHtml(prop.name)}" rows="3"${requiredAttr}${ariaInvalid}>${escapeHtml(v)}</textarea>`;
   }
-  if (prop.use === 'Text' && LONG_TEXT_HINT.has(prop.name)) {
-    return `<textarea id="${id}" name="${escapeHtml(prop.name)}" rows="6"${requiredAttr}${ariaInvalid}>${escapeHtml(value || '')}</textarea>`;
+  if (prop.use === 'Text' && prop.multiline) {
+    return `<textarea id="${id}" name="${escapeHtml(prop.name)}" rows="6"${maxLengthAttr}${requiredAttr}${ariaInvalid}>${escapeHtml(value || '')}</textarea>`;
   }
   if (prop.use === 'URL') {
-    return `<input id="${id}" name="${escapeHtml(prop.name)}" type="url" value="${escapeHtml(value || '')}"${requiredAttr}${ariaInvalid}>`;
+    return `<input id="${id}" name="${escapeHtml(prop.name)}" type="url" value="${escapeHtml(value || '')}"${maxLengthAttr}${requiredAttr}${ariaInvalid}>`;
   }
   if (prop.use === 'Integer') {
     return `<input id="${id}" name="${escapeHtml(prop.name)}" type="number" step="1" value="${escapeHtml(value ?? '')}"${requiredAttr}${ariaInvalid}>`;
@@ -221,7 +220,7 @@ function renderInput({ prop, value, id, requiredAttr, ariaInvalid, refOptions })
     const v = typeof value === 'string' ? value.replace(/Z$/, '').slice(0, 16) : '';
     return `<input id="${id}" name="${escapeHtml(prop.name)}" type="datetime-local" value="${escapeHtml(v)}"${requiredAttr}${ariaInvalid}>`;
   }
-  return `<input id="${id}" name="${escapeHtml(prop.name)}" type="text" value="${escapeHtml(value || '')}"${requiredAttr}${ariaInvalid}>`;
+  return `<input id="${id}" name="${escapeHtml(prop.name)}" type="text" value="${escapeHtml(value || '')}"${maxLengthAttr}${requiredAttr}${ariaInvalid}>`;
 }
 
 function coerceFormValue(raw, prop) {
