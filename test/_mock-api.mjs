@@ -15,7 +15,8 @@ const SCHEMAS = {
     "required": [
       "headline",
       "articleBody",
-      "author"
+      "author",
+      "url"
     ]
   },
   "Person": {
